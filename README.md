@@ -16,3 +16,5 @@ Dataset-ul utilizat contine urmatoarele coloane:
 * owner : Istoricul de proprietate
 * mileage(km/ltr/kg) : Consumul de combustibil
 * engine : Capacitatea cilindrica a motorului
+* max_power : Puterea maxima a motorului
+* seats : Numarul de locuri
