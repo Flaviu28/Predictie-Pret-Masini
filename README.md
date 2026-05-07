@@ -1,9 +1,9 @@
 # Proiect Sisteme Inteligente: Predictia pretului pentru masini rulate
 
-## Descrierea temei
+## 1. Descrierea temei
 Proiectul va utiliza algoritmi de Machine Learning pentru a estima pretul de vanzare al masinilor rulate. Scopul este de a crea un sistem ce va prezice valoarea de piata a unui vehicul pe baza specificatiilor sale tehnice si a istoricului de utilizare.
 
-## Structura setului de date (cardekho.csv)
+## 2. Structura setului de date (cardekho.csv)
 Dataset-ul utilizat contine urmatoarele coloane:
 
 * name : Marca si modelul autoturismului
@@ -41,3 +41,27 @@ In aceasta etapa am analizat modul in care informatia este distribuita si cum in
 * **Pandas**: Pentru manipularea tabelelor de date.
 * **Scikit-Learn**: Pentru calcularea indicatorilor de informatie si preprocesare.
 * **Seaborn & Matplotlib**: Pentru generarea matricelor de corelatie si a graficelor de analiza.
+
+## 6. Realizarea Modelelor si Optimizare
+In cadrul proiectului am implementat si comparat trei algoritmi de invatare automata:
+1. **Linear Regression**: Model de referinta (baseline).
+2. **Random Forest Regressor**: Algoritm bazat pe ansambluri de arbori, optimizat prin `GridSearchCV`.
+3. **Gradient Boosting Regressor**: Model care invata din erorile succesive ale arborilor de decizie.
+
+## 7. Compararea Modelelor si Rezultate
+Dupa aplicarea optimizarii hiperparametrilor (numar de estimatori si adancime), am obtinut urmatoarele rezultate:
+
+| Model | MAE (Eroare medie) | R2 Score (Precizie) |
+| :--- | :--- | :--- |
+| Linear Regression | ~130,000 | ~0.65 |
+| Random Forest | ~50,000 | ~0.91 |
+| Gradient Boosting | ~60,000 | ~0.89 |
+
+*(Valorile pot varia usor la fiecare rulare, dar Random Forest ramane cel mai performant.)*
+
+## 8. Modelul Final
+Modelul ales pentru implementarea finala este **Random Forest Regressor**. 
+**Motivatie**: 
+* A obtinut cel mai mare scor **R2 (peste 0.90)**, ceea ce inseamna ca explica 90% din variatia preturilor.
+* Este mai putin sensibil la anomaliile ramase in date fata de regresia liniara.
+* Gestioneaza foarte bine variabilele categorice (precum brandul sau tipul de combustibil) transformate in valori numerice.
