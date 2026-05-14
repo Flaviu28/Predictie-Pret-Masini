@@ -65,3 +65,16 @@ Modelul ales pentru implementarea finala este **Random Forest Regressor**.
 * A obtinut cel mai mare scor **R2 (peste 0.90)**, ceea ce inseamna ca explica 90% din variatia preturilor.
 * Este mai putin sensibil la anomaliile ramase in date fata de regresia liniara.
 * Gestioneaza foarte bine variabilele categorice (precum brandul sau tipul de combustibil) transformate in valori numerice.
+
+## 9. Analiza Modelului si Interpretare (XAI)
+In urma antrenarii modelului final (Random Forest), am extras urmatoarele concluzii despre modul in care sistemul ia decizii:
+
+### Importanta Caracteristicilor
+* **Anul de fabricatie (44%)** si **Puterea motorului (30%)** sunt factorii determinanti, acestia dicteaza peste 70% din pretul final.
+* Kilometrajul are o importanta mai mica decat cea asteptata (aprox. 3%), sugerand ca starea tehnica si vechimea sunt prioritare in fata utilizarii brute.
+
+### Analiza Cazurilor Atipice
+Modelul prezice masinile de tip "mass-market" (Maruti, Hyundai, Honda), dar intampina dificultati la marcile de lux (BMW, Mercedes) care au peste 10 ani vechime. In aceste cazuri, valoarea de brand si intretinerea (variabile neincluse in dataset) mentin pretul real mult peste media pietei prezisa de algoritm.
+
+### Cunostinte Noi
+Un sistem inteligent poate identifica rapid segmentele de piata supraevaluate. De asemenea, s-a observat ca variabile precum tipul de vanzator (Individual vs Dealer) au un impact marginal asupra pretului comparativ cu specificatiile tehnice pure.
