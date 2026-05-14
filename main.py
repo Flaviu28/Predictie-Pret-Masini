@@ -82,3 +82,27 @@ for m, res in models_data.items():
     print(f"{m}: R2 Score = {res[1]:.4f}")
 
 print("\nModelul ales: Random Forest (datorita stabilitatii si scorului R2 ridicat)")
+
+# 6. ANALIZA MODELULUI (EXPLAINABILITY)
+importances = best_rf.feature_importances_
+feature_names = X.columns
+feature_importance_df = pd.DataFrame({'Caracteristica': feature_names, 'Importanta': importances}).sort_values(by='Importanta', ascending=False)
+print("\nImportanta Caracteristicilor (Top 5)")
+print(feature_importance_df.head(5))
+
+# Interpretare pe instante specifice
+y_pred = best_rf.predict(X_test)
+error_analysis = pd.DataFrame({'Actual': y_test, 'Predictie': y_pred})
+error_analysis['Eroare'] = abs(error_analysis['Actual'] - error_analysis['Predictie'])
+
+# Cazul cel mai precis (Unde modelul a inteles perfect datele)
+best_case_idx = error_analysis['Eroare'].idxmin()
+print(f"\nPredictie Ideala:")
+print(f"Masina index {best_case_idx}")
+print(f"Pret Real: {y_test.loc[best_case_idx]} | Pret Prezis: {y_pred[np.where(X_test.index == best_case_idx)[0][0]]:.2f}")
+
+# Cazul cu eroare mare (Unde modelul are limitari)
+worst_case_idx = error_analysis['Eroare'].idxmax()
+print(f"\nEroare Maxima:")
+print(f"Masina index {worst_case_idx}")
+print(f"Pret Real: {y_test.loc[worst_case_idx]} | Pret Prezis: {y_pred[np.where(X_test.index == worst_case_idx)[0][0]]:.2f}")
